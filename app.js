@@ -19,7 +19,7 @@ const session = require("express-session");
 //REQUIREING THE connect- mongos
 const MongoStore = require('connect-mongo');
 
-//REQUIRING THE CONNECT FLASH( TO INSTALL--> npm i connect-flash) -->THEN USE BELOW
+//REQUIRING THE CONNECT FLASH( TO INSTALL--> npm install connect-flash) -->THEN USE BELOW
 const flash = require("connect-flash");
 
 //REQUIRING THE PASSPORT
