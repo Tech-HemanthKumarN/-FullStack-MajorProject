@@ -1,0 +1,166 @@
+body{
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* BoilerPlate container */
+.container{
+    flex: 1;
+}
+
+/* Navber (navber.ejs) */
+.navbar{
+    height: 6rem;
+    background-color: white;
+}
+.fa-compass-drafting{
+    color: #fe424d;
+    font-size: 2rem;
+}
+.nav-link{
+    color: #222222 !important;
+}
+
+/* Footer (footer.ejs)*/
+.f-info{
+    height: 8rem;
+    background-color: #ebebeb;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    justify-content: space-evenly;
+    text-align: center;
+}
+.f-info-links, 
+.f-info-socials,
+.f-info-brand{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* .f-info-socials :hover{
+box-shadow: 2px 2px 10px #b7b6b6;
+} */
+.f-info-socials i {
+    margin-right: 1rem; 
+    font-size: 1.3rem;
+}
+
+/* REMOVEING THE UNDERLINE */
+.f-info-links a{
+    text-decoration: none;
+    color: #222222;
+}
+/* HOVERING EFFECTS */
+.f-info-links a:hover{
+    text-decoration: underline;
+    color: #222222;
+}
+
+/* CARDS */
+.listing-card{
+    border: none !important;
+    margin-bottom: 2rem;
+}
+.card-img-top{
+    border-radius: 1rem !important;
+    width: 100% !important;
+    object-fit: cover !important;
+}
+
+/* CARDS TEXT PART */
+.card-body{
+    padding: 0 !important;
+}
+.card-text p{
+    font-weight: 400 !important;
+}
+/* .row{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    justify-content: space-evenly;
+    gap: 3rem;
+} */
+
+.listing-link{
+    text-decoration: none;
+}
+
+/* Card Effects */
+.card-img-overlay{
+    opacity: 0;
+}
+.card-img-overlay:hover{
+    opacity:0.2;
+    background-color: white;
+}
+
+/* New.ejs Part (CREATE NEW LISTING)*/
+.add-btn{
+    background-color: #fe424d !important;
+    border: none !important;
+}
+
+/* Edit.ejs (EDIT PAGE) */
+.edit-btn{
+    background-color: #fe424d !important;
+    border: none !important;
+}
+/* Container for the image preview */
+.edit-image-preview {
+  width: 250px;
+  height: 180px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 8px;
+  
+  /* --- ✨ New Additions --- */
+  cursor: pointer; /* Changes the mouse cursor to a pointer on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a subtle starting shadow */
+  transition: box-shadow 0.3s ease-in-out; /* Smoothly animates the shadow */
+}
+
+/* The image itself inside the container */
+.edit-image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  
+  /* --- ✨ New Additions --- */
+  transition: transform 0.3s ease-in-out; /* Smoothly animates the zoom effect */
+}
+
+/* --- The Hover Effect --- */
+.edit-image-preview:hover {
+  /* Makes the shadow larger and more prominent on hover, creating a "glow" or "lift" effect */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); 
+}
+
+.edit-image-preview:hover img {
+  /* Scales the image up by 10% when the container is hovered */
+  transform: scale(1.1); 
+}
+/* show.ejs (SHOW PAGE )*/
+.show-img{
+    height: 55vh;
+}
+
+.btns{
+    display: flex;
+}
+
+.show-card{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* MAP STYLING */
+#map { 
+    height: 400px;
+    width: 90%;
+}
+

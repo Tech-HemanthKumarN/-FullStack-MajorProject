@@ -1,0 +1,26 @@
+<!-- PAHSE-02 PART-03 VID-10 -->
+<!-- THIS IS FOR FLASH SUCCESS INCLUDE -->
+  <!-- FOR SUCCESS -->
+ 
+<!--IT WILL POPUP THE MESSAGE THAT IS "{New Lisitng is Created}" IN THE MAIN PAGE WHEN YOU ADD THE NEW LISTING  -->
+<!-- HERE WE USE THE BOOTSTARP ALERT PROPERTY AND DISSMISSING PROPERTY WITH CROSS BUTTON -->
+<!--goto -- include(floder)--flash.ejs--  and we dirctly define the or include the flash.ejs in bolerplate -->
+
+<% if(success && success.length){ %>
+    <div  class="alert alert-success alert-dismissible fade show col-6  offset-3" role="alert">
+        <%= success %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<% } %>
+
+
+<!-- THIS IS FOR FLASH FALIUER INCLUDE -->
+ <!-- FOR ERROR --> 
+  <!-- SAME AS IT IS LIKE SUCCESS PART -->
+<% if(error && error.length){ %>
+    <div  class="alert alert-danger alert-dismissible fade show col-6  offset-3" role="alert">
+        <%= error %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<% } %>
+

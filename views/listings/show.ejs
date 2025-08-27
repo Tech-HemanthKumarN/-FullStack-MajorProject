@@ -1,0 +1,127 @@
+<% layout("/layouts/boilerplate") %>
+
+<!-- "<%=process.env.MAP_TOKEN%>"storing this value in mapToken -->
+<script>
+    const mapToken = "<%=process.env.MAP_TOKEN%>";
+    const listing = <%-JSON.stringify(listing) %>;
+
+    
+</script>
+
+<!-------------------------------------------------------------------------------------- -->
+
+    <div class="row mt-3">
+        <!-- col-8 it occupeing 8 section becz heading is large -->
+        <div class="col-8 offset-3">
+            <h3>
+                <%=listing.title%>
+            </h3>
+        </div>
+
+        <!--  col-8 it occupeing 6 section b -->
+        <div class="card col-6 offset-3 show-card listing-card">
+            <img src="<%= listing.image.url %>" class="card-img-top show-img " alt="listingimage">
+            <br />
+            <div class="card-body">
+                <p class="card-text">Owned by:<i><%=listing.owner.username%></i> </p>
+                <p class="card-text"><%=listing.description%></p>
+                <p class="card-text"> &#8377;<%=listing.price.toLocaleString("en-IN")%></p>
+                <p class="card-text"><%=listing.location%></p>
+                <p class="card-text"><%=listing.country%></p>
+            </div>
+        </div>
+        <br>
+
+        <!-- showing the delete and edit button only when currUser._id is equals to listing.owner._id, otherwise reject -->
+         
+        <% if( currUser && currUser._id.equals(listing.owner._id)) {%>
+            <div class="btns offset-3">
+            <form method="GET" action="/listings/<%=listing._id%>/edit">
+                <button class="btn btn-dark edit-btn mt-3 mb-3 offset-1 ">Edit</button>
+            </form>
+
+            <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
+                <button class="btn btn-dark delete-btn mt-3 mb-3  offset-3">Delete</button>
+            </form>
+        </div>
+        <%}%>
+        
+        <br>
+        <div class="col-8 offset-3 mb-3">
+            <!-- we add the reviews only when the user is logged in otherwise we can't add any reviews here so that's why i am using  <-% if(currUser) { %>  -->
+            <% if(currUser) { %>
+            <hr/>
+            <h4>Leave a Review</h4>
+            <!-- novalidate class="needs-validation" --- bootstrap-property-->
+            <form action="/listings/<%=listing.id%>/reviews" method="POST" novalidate class="needs-validation">
+
+                <!-- I FETCHED THE {class="form-label"},{class="form-range"}, {class="form-control"}__> FORM BOOTSTRAP UNDER FORM I HAVE ALREADY APLYED THE BOOTSTARP PROPERTY IN BIOLERPLATE-->
+                <!-- CREATING THE DIV FOR RATING PURPOSE -->
+
+                <!-- <div class="mb-3 mt-3">
+                    <label for="rating" class="form-label">Rating</label>
+                    <input type="range" min="1" max="5" name="review[rating]" id="rating" class="form-range">
+                </div> -->
+
+                <!-- https://github.com/LunarLogic/starability/tree/master this is the file i used create the stars ratings go here u will get everything -->
+                <div class="mb-3 mt-3">
+                    <label for="rating" class="form-label">Rating</label>
+                    <fieldset class="starability-slot">
+                        <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
+                        <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                        <label for="first-rate1" title="Terrible">1 star</label>
+                        <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                        <label for="first-rate2" title="Not good">2 stars</label>
+                        <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                        <label for="first-rate3" title="Average">3 stars</label>
+                        <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                        <label for="first-rate4" title="Very good">4 stars</label>
+                        <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                        <label for="first-rate5" title="Amazing">5 stars</label>
+                    </fieldset>
+                </div>
+
+                <!-- CREATING DIV FOR COMMENT PURPOSE -->
+                <div class="mb-3 mt-3">
+                    <label for="comment" class="form-label">Comment</label>
+                    <textarea name="review[comment]" id="comment" rows="2" cols="20" class="form-control"
+                        required></textarea>
+                    <div class="invalid-feedback">Please add some comment for review</div>
+                </div>
+                <button class="btn btn-outline-dark mt-3 mb-3  offset-0">Submit</button>
+                <!-- class="btn btn-outline-dark delete-btn mt-3 mb-3  offset-0" (FROM BOOTSTARP)-->
+            </form>
+            <hr />
+            <% } %>
+
+            <% if(listing.reviews.length > 0) {%>
+                <div class="row">
+                    <p> <b>All Reviews</b></p>
+                    <!-- ms-3 means margin from start -->
+                    <% for(let review of listing.reviews) { %>
+                        <div class="card col-5 ms-3 mt-3 mb-3">
+                            <div class="card-body ">
+                                <div class="card-title"><b>@<%=review.author.username%></b></div>
+                                <p class="starability-result card-text" data-rating="<%= review.rating %>"></p>
+                                <p class="card-text"><%= review.comment %></p>
+                            
+                            </div>
+                            <!-- Createing the button to delete the reviews -->
+                            <form method="POST"  action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=DELETE" class="mb-3">
+                                <button class="btn btn-sm btn-outline-dark delete-btn mt-3 mb-3  offset-0">Delete</button>
+                            </form>
+                        </div>
+                    <% } %>
+                </div>
+            <%}%>
+        </div>
+
+        <!-- adding Map -->
+        <div class="col-8 offset-3 mb-3 mt-3">
+            <h3>Where you’ll be</h3>
+            <div id="map"></div>
+        </div>
+    </div>
+
+    <!------------------------------ Requring the map.js file here------------------------------------------------->
+    <script src="/js/map.js"></script>
