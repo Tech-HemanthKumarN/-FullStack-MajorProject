@@ -44,7 +44,6 @@ const mongoose = require("mongoose");
 // "{THIS CODE NO USE IN THIS FILE,}"
 // // const Joi = require('joi'); no use, don't require here simply
 
-// const { listingSchema, reviewSchema } = require("./schema.js");
 
 // //REQUIRING THE LISTINGS,
 // ("THIS CODE NO USE IN THIS FILE,")
@@ -98,7 +97,7 @@ const store = MongoStore.create({
   touchAfter:24 * 3600,
 });
 
-store.on("error",() =>{
+store.on("error",(err) =>{
     console.log("ERROR in MONGO SESSION STORE", err);
 });
 
@@ -147,7 +146,7 @@ passport.deserializeUser(User.deserializeUser());
 app.use((req,res,next)=>{
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
-    res.locals.currUser = req.user;// in navbar.ejs we can't access the req.user directly, so that's why i am defing that here, means i ma storing the "{req.user}" ka information in "{currUser}" varilable me, so now you can us "{currUser}" in navbar.ejs 
+    res.locals.currUser = req.user;// in navbar.ejs we can't access the req.user directly, so that's why i am defing that here, means i am storing the "{req.user}" ka information in "{currUser}" varilable me, so now you can us "{currUser}" in navbar.ejs 
     //goto --> include(floder)-->flash.ejs-->  and we dirctly define the or include the flash.ejs in bolerplate
     next();
 });

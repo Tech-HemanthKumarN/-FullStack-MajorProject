@@ -23,7 +23,9 @@ const Listing = require("../models/listing.js");
 // main() is an async function being called to perform the connection.
 // If successful: connected to DB
 // If error: console.log(err)
-const MONGO_URL = 'mongodb://127.0.0.1:27017/wanderlust'; // YOU HAVE DEFINE THIS URL HERE ONLY IN THE TOP BEFORE MAIN() OTHERWISE YOU CON'T ACCESS THE MONGO_URL
+const ATLASDB_URL="mongodb+srv://Hemanthkumar:3QGLqQZdAxBFUAE6@cluster0.zdmll31.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+
+// YOU HAVE DEFINE THIS URL HERE ONLY IN THE TOP BEFORE MAIN() OTHERWISE YOU CON'T ACCESS THE MONGO_URL
 main()  // I AM CALLING THE MAIN FUNCTION
 .then(()=>{
     console.log("connected to DB")
@@ -32,13 +34,13 @@ main()  // I AM CALLING THE MAIN FUNCTION
     console.log(err);
 });
 async function main() { // I AM CALLING THE MAIN FUNCTION (ABOVE ONE)
-    await mongoose.connect(MONGO_URL);
+    await mongoose.connect(ATLASDB_URL);
 }
 
 const initDB =  async () =>{
     await Listing.deleteMany({});// IF MANY DATA ((LIKE A RANDOM DATA)IS exsist IN GIT BASH(MONGOOSH SHELL), IT GONE CLEAR EVERYTHING THERE, NOW ALL DATA WILL BE GET DELETED 
     //AND THEN WE INSERT NEW DATA INTO IT. USING INSERTMANY
-    initData.data = initData.data.map((obj)=>({...obj,owner:"68a194ffda48007761e8b085"}));
+    initData.data = initData.data.map((obj)=>({...obj,owner:"68b326075c80114dffc5ec54"}));
     await Listing.insertMany(initData.data);// Here initDB is a OBJECT AND WE ACCESSING KEY DATA-->{" data"}  init.
     console.log("Data was intialized");
 }
