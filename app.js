@@ -1,3 +1,8 @@
+const dns = require('node:dns');
+dns.setDefaultResultOrder('ipv4first');
+
+// ... your existing requires like const express = require("express");
+
 if(process.env.NODE_ENV != "production"){
     require('dotenv').config();
 }

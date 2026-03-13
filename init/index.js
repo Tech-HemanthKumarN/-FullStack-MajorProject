@@ -23,7 +23,9 @@ const Listing = require("../models/listing.js");
 // main() is an async function being called to perform the connection.
 // If successful: connected to DB
 // If error: console.log(err)
-const ATLASDB_URL="mongodb+srv://Hemanthkumar:3QGLqQZdAxBFUAE6@cluster0.zdmll31.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+//const ATLASDB_URL="mongodb+srv://Hemanthkumar:3QGLqQZdAxBFUAE6@cluster0.zdmll31.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+
+const ATLASDB_URL="mongodb+srv://Aryaa:YJJ9VVLkj4aNRJpB@cluster0.zdmll31.mongodb.net/wanderlust?retryWrites=true&w=majority&appName=Cluster0";
 
 // YOU HAVE DEFINE THIS URL HERE ONLY IN THE TOP BEFORE MAIN() OTHERWISE YOU CON'T ACCESS THE MONGO_URL
 main()  // I AM CALLING THE MAIN FUNCTION
