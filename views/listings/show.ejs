@@ -21,7 +21,7 @@
             <img src="<%= listing.image.url %>" class="card-img-top show-img " alt="listingimage">
             <br />
             <div class="card-body">
-                <p class="card-text">Owned by:<i><%=listing.owner.username%></i> </p>
+                <p class="card-text">Owned by:<i><%= listing.owner ? listing.owner.username : 'Unknown' %></i> </p>
                 <p class="card-text"><%=listing.description%></p>
                 <p class="card-text"> &#8377;<%=listing.price.toLocaleString("en-IN")%></p>
                 <p class="card-text"><%=listing.location%></p>
@@ -32,7 +32,7 @@
 
         <!-- showing the delete and edit button only when currUser._id is equals to listing.owner._id, otherwise reject -->
          
-        <% if( currUser && currUser._id.equals(listing.owner._id)) {%>
+        <% if( currUser && listing.owner && currUser._id.equals(listing.owner._id)) {%>
             <div class="btns offset-3">
             <form method="GET" action="/listings/<%=listing._id%>/edit">
                 <button class="btn btn-dark edit-btn mt-3 mb-3 offset-1 ">Edit</button>
@@ -99,7 +99,7 @@
                     <% for(let review of listing.reviews) { %>
                         <div class="card col-5 ms-3 mt-3 mb-3">
                             <div class="card-body ">
-                                <div class="card-title"><b>@<%=review.author.username%></b></div>
+                                <div class="card-title"><b>@<%= review.author ? review.author.username : 'Unknown' %></b></div>
                                 <p class="starability-result card-text" data-rating="<%= review.rating %>"></p>
                                 <p class="card-text"><%= review.comment %></p>
                             

@@ -42,7 +42,7 @@ async function main() { // I AM CALLING THE MAIN FUNCTION (ABOVE ONE)
 const initDB =  async () =>{
     await Listing.deleteMany({});// IF MANY DATA ((LIKE A RANDOM DATA)IS exsist IN GIT BASH(MONGOOSH SHELL), IT GONE CLEAR EVERYTHING THERE, NOW ALL DATA WILL BE GET DELETED 
     //AND THEN WE INSERT NEW DATA INTO IT. USING INSERTMANY
-    initData.data = initData.data.map((obj)=>({...obj,owner:"68b326075c80114dffc5ec54"}));
+    initData.data = initData.data.map((obj)=>({...obj,owner:"68b3254f2829b03cc4ca988d"}));
     await Listing.insertMany(initData.data);// Here initDB is a OBJECT AND WE ACCESSING KEY DATA-->{" data"}  init.
     console.log("Data was intialized");
 }
