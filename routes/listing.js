@@ -117,6 +117,28 @@ router.get("/:id/edit",
      isOwner, //and then checking, what the user have permission to update ,(require this above frist)
     wrapAsync(listingController.renderEditForm)
 );
+
+// Add this to tech-hemanthkumarn/routes/listing.js
+router.get("/:id/payment", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const listing = await Listing.findById(id);
+
+        if (!listing) {
+            req.flash("error", "Listing not found!");
+            return res.redirect("/listings");
+        }
+
+        res.render("listings/payment", {
+            listing,
+            phonePeQR: "/images/gpay-qr.png", 
+            gPayQR: "/images/gpay-qr.png",
+        });
+    } catch (error) {
+        req.flash("error", "Unable to load payment page.");
+        res.redirect("/listings");
+    }
+});
 module.exports = router;
 
 // ________________________________________________________________________________________________

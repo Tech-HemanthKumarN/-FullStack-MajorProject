@@ -1,0 +1,18 @@
+<% layout("/layouts/boilerplate") -%>
+<div class="payment-container mt-3">
+    <h1>Complete Your Payment</h1>
+    <h2>Listing: <%= listing.title %></h2>
+    <p class="total-amount">Total Amount: <span>₹<%= listing.price.toLocaleString("en-IN") %></span></p>
+
+    <h3>Scan to Pay</h3>
+    <div class="row">
+        <div class="col-6 text-center">
+            <h4>PhonePe</h4>
+            <img src="<%= phonePeQR %>" alt="PhonePe QR" style="width: 200px;">
+        </div>
+        <div class="col-6 text-center">
+            <h4>GPay</h4>
+            <img src="<%= gPayQR %>" alt="GPay QR" style="width: 200px;">
+        </div>
+    </div>
+</div>
